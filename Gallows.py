@@ -28,7 +28,7 @@ def handle_user_input():
 
 def get_initial_statuses(word):
     statuses = []
-    for letter in word:
+    for lett in word:
         statuses.append(False)
     return statuses
 
@@ -71,15 +71,16 @@ def main():
 
     while not is_game_finished(statuses, current_errors):
         print_word(word, statuses)
+        print("Errors left: ", MAX_ERRORS - current_errors)
         letter = handle_user_input()
         result = perform_check_action(word, statuses, letter)
 
         if not result:
             current_errors += 1
+    if current_errors >= MAX_ERRORS:
+        print("You lose!")
+    else:
+        print("You Win!")
 
 
 main()
-
-while True:
-    input("Game is finished! Press any button to exit:")
-    break
